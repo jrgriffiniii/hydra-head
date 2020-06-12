@@ -16,7 +16,7 @@ jobs:
         default: '8985'
       active_fedora_version:
         type: string
-        default: '>0'
+        default: '>= 0'
       solr_config_path:
         type: string
         default: '.internal_test_app/solr/conf'
