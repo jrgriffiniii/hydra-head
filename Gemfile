@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
 gem 'rspec-its'
+
 # Specify gem dependencies in hydra-head.gemspec
 gemspec
 
@@ -29,6 +30,12 @@ else
   end
 
   case ENV['RAILS_VERSION']
+  when /^6\.0/
+    gem 'active-fedora', git: 'https://github.com/jrgriffiniii/active_fedora.git', branch: 'faraday-dependency'
+    gem 'activesupport', '~> 6.0'
+    # gem 'faraday', '~> 0.11'
+    gem 'faraday', '0.9.0'
+
   when /^5.[12]/
     gem 'sass-rails', '~> 5.0'
   when /^4.2/
