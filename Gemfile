@@ -1,5 +1,6 @@
 source "https://rubygems.org"
 
+gem 'active-fedora', git: 'https://github.com/jrgriffiniii/active_fedora.git', branch: 'faraday-dependency'
 gem 'rspec-its'
 
 # Specify gem dependencies in hydra-head.gemspec
@@ -27,13 +28,12 @@ else
 
     case ENV['RAILS_VERSION']
     when /^6\.0/
-      gem 'active-fedora', git: 'https://github.com/jrgriffiniii/active_fedora.git', branch: 'faraday-dependency'
       gem 'activesupport', '~> 6.0'
       # gem 'faraday', '~> 0.11'
       gem 'faraday', '0.9.0'
       gem 'webpacker'
 
-    when /^5.[12]/
+    when /^5\./
       gem 'rails-controller-testing'
       gem 'sass-rails', '~> 5.0'
 
@@ -42,8 +42,6 @@ else
       gem 'sass-rails', '>= 5.0'
       gem 'coffee-rails', '~> 4.1.0'
 
-    when /^4.[01]/
-      gem 'sass-rails', '< 5.0'
     end
   else
     gem 'rails-controller-testing'

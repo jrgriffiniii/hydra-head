@@ -12,12 +12,9 @@ module Hydra
 
     included do
       include Hydra::PermissionsQuery
-      binding.pry
 
-      if Blacklight.has_module?(:SearchHelper)
+      if defined?(Blacklight::SearchHelper)
         include Blacklight::SearchHelper
-      else
-        include Blacklight::SearchService
       end
 
       self.ability_logic = [:create_permissions, :edit_permissions, :read_permissions, :discover_permissions, :download_permissions, :custom_permissions]
