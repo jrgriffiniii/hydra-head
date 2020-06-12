@@ -31,6 +31,7 @@ else
       gem 'activesupport', '~> 6.0'
       # gem 'faraday', '~> 0.11'
       gem 'faraday', '0.9.0'
+      gem 'webpacker'
 
     when /^5.[12]/
       gem 'rails-controller-testing'

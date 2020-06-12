@@ -1,16 +1,19 @@
 require 'rake/testtask'
+
 begin
   require 'bundler/setup'
 rescue LoadError
   puts 'You must `gem install bundler` and `bundle install` to run rake tasks'
 end
+
 Bundler::GemHelper.install_tasks
 
-APP_ROOT= File.dirname(__FILE__)
-require 'solr_wrapper'
-require 'fcrepo_wrapper'
+APP_ROOT = File.dirname(__FILE__)
+
 require 'active_fedora/rake_support'
 require 'engine_cart/rake_task'
+require 'fcrepo_wrapper'
+require 'solr_wrapper'
 
 desc "Run Continuous Integration"
 task :ci => ['engine_cart:generate'] do

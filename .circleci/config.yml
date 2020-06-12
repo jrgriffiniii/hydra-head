@@ -14,9 +14,6 @@ jobs:
       solr_port:
         type: string
         default: '8985'
-      active_fedora_version:
-        type: string
-        default: '>= 0'
       solr_config_path:
         type: string
         default: '.internal_test_app/solr/conf'
@@ -25,13 +22,12 @@ jobs:
       name: 'samvera/ruby_fcrepo_solr'
       ruby_version: << parameters.ruby_version >>
       solr_port: << parameters.solr_port >>
-    working_directory: ~/project
+    working_directory: ~/hydra-head
 
     environment:
       ENGINE_CART_RAILS_OPTIONS: --skip-git --skip-bundle --skip-listen --skip-spring --skip-yarn --skip-keeps --skip-coffee --skip-puma --skip-test
       RAILS_VERSION: << parameters.rails_version >>
       SOLR_TEST_PORT: << parameters.solr_port >>
-      ACTIVE_FEDORA_VERSION: << parameters.active_fedora_version >>
     steps:
       - samvera/cached_checkout
 
@@ -41,7 +37,7 @@ jobs:
           project: hydra-head
 
       - samvera/engine_cart_generate:
-          cache_key: v1-internal-test-app-{{ checksum "hydra-head.gemspec" }}-{{ checksum "spec/test_app_templates/lib/generators/test_app_generator.rb" }}-{{ checksum "hydra-core/lib/generators/hydra/head_generator.rb" }}-{{ checksum "spec/test_app_templates/Gemfile.extra" }}-<< parameters.active_fedora_version >>-<< parameters.rails_version >>-<< parameters.ruby_version >>
+          cache_key: v1-internal-test-app-{{ checksum "hydra-head.gemspec" }}-{{ checksum "spec/test_app_templates/lib/generators/test_app_generator.rb" }}-{{ checksum "hydra-core/lib/generators/hydra/head_generator.rb" }}-{{ checksum "spec/test_app_templates/Gemfile.extra" }}-<< parameters.rails_version >>-<< parameters.ruby_version >>
 
       - samvera/install_solr_core:
           solr_config_path: << parameters.solr_config_path >>
